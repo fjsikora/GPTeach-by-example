@@ -29,4 +29,7 @@ You can get your own OpenAI API key by following the following instructions:
 
 ## Try out the app
 
-Once the app is loaded, go ahead and upload your examples, enter your API keys, and type a question in the text box and wait for a generated response.
+1. git clone this repository
+2. change directory to repo folder
+3. run `streamlit run main.py` in terminal
+4. Once the app is loaded, go ahead and upload your examples, enter your API keys, and type a question in the text box and wait for a generated response.
