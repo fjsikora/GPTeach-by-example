@@ -102,7 +102,7 @@ with st.form('myform', clear_on_submit=True):
         index_name = os.getenv("INDEX_NAME")
     submitted = st.form_submit_button('Submit', disabled=not(uploaded_file and query_text))
     if submitted and openai_api_key.startswith('sk-'):
-        with st.spinner('Calculating...'):
+        with st.spinner('Looking up relavent examples...'):
             response = generate_response(uploaded_file, openai_api_key, pinecone_api_key, pinecone_env, index_name, query_text)
             result.append(response)
             del openai_api_key
