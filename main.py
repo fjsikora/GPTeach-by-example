@@ -58,7 +58,7 @@ def generate_response(uploaded_file, openai_api_key, pinecone_api_key, pinecone_
         # We provide an ExampleSelector instead of examples.
         example_selector=example_selector,
         example_prompt=example_prompt,
-        prefix="Give a relative answer for every input",
+        prefix="Give a relative answer for every input. Do not try to make up an answer if you do not find relavent examples. Simply say that you could not find any relative examples to answer the question.",
         suffix="Input: {query}\nOutput: ", 
         input_variables=["query"],
         )
