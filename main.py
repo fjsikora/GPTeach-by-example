@@ -74,6 +74,9 @@ def generate_response(uploaded_file, openai_api_key, pinecone_api_key, pinecone_
 # Page title
 st.set_page_config(page_title='🎓 GPTeach-by-example')
 st.title('🎓 GPTeach-by-example')
+st.markdown(
+    "An AI tool that generates a response based on relative examples provided by the user. Useful for when consistency in the output and how it's formatted is important."
+)
 
 # CSV file upload
 uploaded_file = st.file_uploader('Upload a CSV file with two columns named input and output', type='csv')
