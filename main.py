@@ -5,12 +5,11 @@ from langchain.prompts import FewShotPromptTemplate, PromptTemplate
 from langchain.prompts.example_selector import SemanticSimilarityExampleSelector
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone
+from streamlit_chat import message
+import os
+from dotenv import load_dotenv
 
-# import os
-# from dotenv import load_dotenv
-# OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
-# PINECONE_API_KEY = os.environ['PINECONE_API_KEY']
-# PINECONE_ENVIRON = os.environ['PINECONE_ENVIRON']
+load_dotenv()
 
 def generate_response(uploaded_file, openai_api_key, pinecone_api_key, pinecone_env, index_name, query_text):
     # Load document if file is uploaded
@@ -68,7 +67,8 @@ def generate_response(uploaded_file, openai_api_key, pinecone_api_key, pinecone_
         openai = OpenAI(
         model_name="text-davinci-003",
         openai_api_key=openai_api_key,
-        temperature=0
+        temperature=0,
+        verbose=True
         )
         return openai(dynamic_prompt.format(query=query_text))
 
@@ -84,10 +84,22 @@ query_text = st.text_input('Enter your question:', placeholder = 'Enter a questi
 # Form input and query
 result = []
 with st.form('myform', clear_on_submit=True):
-    openai_api_key = st.text_input('OpenAI API Key (https://platform.openai.com/)', type='password', disabled=not(uploaded_file and query_text))
-    pinecone_api_key = st.text_input('Pinecone API Key (https://app.pinecone.io/)', type='password', disabled=not(uploaded_file and query_text))
-    pinecone_env = st.text_input('Pinecone Environment', disabled=not(uploaded_file and query_text))
-    index_name = st.text_input('Index Name (Note that it may take a couple minutes to generate response if creating a new index)', disabled=not(uploaded_file and query_text))
+    if os.getenv("OPENAI_API_KEY") is None or os.getenv("OPENAI_API_KEY") == "":
+        openai_api_key = st.text_input('OpenAI API Key (https://platform.openai.com/)', type='password')
+    else:
+        openai_api_key = os.getenv("OPENAI_API_KEY")
+    if os.getenv("PINECONE_API_KEY") is None or os.getenv("PINECONE_API_KEY") == "":    
+        pinecone_api_key = st.text_input('Pinecone API Key (https://app.pinecone.io/)', type='password')
+    else:
+        pinecone_api_key = os.getenv("PINECONE_API_KEY")
+    if os.getenv("PINECONE_ENV") is None or os.getenv("PINECONE_ENV") == "":     
+        pinecone_env = st.text_input('Pinecone Environment')
+    else:
+        pinecone_env = os.getenv("PINECONE_ENV")
+    if os.getenv("PINECONE_ENV") is None or os.getenv("PINECONE_ENV") == "":  
+        index_name = st.text_input('Pinecone Index Name (Note that it may take a couple minutes to generate response if creating a new index)')
+    else:
+        index_name = os.getenv("INDEX_NAME")
     submitted = st.form_submit_button('Submit', disabled=not(uploaded_file and query_text))
     if submitted and openai_api_key.startswith('sk-'):
         with st.spinner('Calculating...'):
