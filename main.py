@@ -5,7 +5,6 @@ from langchain.prompts import FewShotPromptTemplate, PromptTemplate
 from langchain.prompts.example_selector import SemanticSimilarityExampleSelector
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone
-from streamlit_chat import message
 import os
 from dotenv import load_dotenv
 
