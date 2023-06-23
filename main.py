@@ -68,7 +68,6 @@ def generate_response(uploaded_file, openai_api_key, pinecone_api_key, pinecone_
         model_name="text-davinci-003",
         openai_api_key=openai_api_key,
         temperature=0,
-        verbose=True
         )
         return openai(dynamic_prompt.format(query=query_text))
 
@@ -97,12 +96,12 @@ with st.form('myform', clear_on_submit=True):
     else:
         pinecone_env = os.getenv("PINECONE_ENV")
     if os.getenv("PINECONE_ENV") is None or os.getenv("PINECONE_ENV") == "":  
-        index_name = st.text_input('Pinecone Index Name (Note that it may take a couple minutes to generate response if creating a new index)')
+        index_name = st.text_input('Pinecone Index Name')
     else:
         index_name = os.getenv("INDEX_NAME")
     submitted = st.form_submit_button('Submit', disabled=not(uploaded_file and query_text))
     if submitted and openai_api_key.startswith('sk-'):
-        with st.spinner('Looking up relavent examples...'):
+        with st.spinner('Looking up relavent examples... this may take a couple minutes if creating a new vector store index.'):
             response = generate_response(uploaded_file, openai_api_key, pinecone_api_key, pinecone_env, index_name, query_text)
             result.append(response)
             del openai_api_key
