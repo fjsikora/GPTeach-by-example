@@ -1,10 +1,10 @@
 # 🎓 GPTeach-by-example
 
-An AI tool that generates a response based on relative examples provided by the user. Useful for when consistency in the output and how it's formatted is important. 
+An AI tool that generates a response based on relative examples provided by the user. Useful for when consistency in the output and how it's formatted is important.
 
 ## How does it work?
 
-1. Create a .csv file with two columns, first one named 'input' and second one named 'output'.
+1. Create a .csv file with two columns, first one named 'input' and second one named 'output'. Optionally use the existing examples.csv file in this repo.
 2. Enter in as many examples in the .csv file as you'd like.
 3. Upload the .csv file to the app.
 4. The examples are converted into embeddings using OpenAI's embedding model and stored in the Pinecone vector store.
