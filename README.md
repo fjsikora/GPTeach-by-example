@@ -35,6 +35,12 @@ You can get your own OpenAI API key by following the following instructions:
 4. run `streamlit run main.py` in terminal to load app in your default web browser
 5. Once the app is loaded, go ahead and upload your examples, enter your API keys, and type a question in the text box and wait for a generated response.
 
+## Images
+
+<img src="./GPTeach-by-example-screenshot.jpg" width="100%"/>
+
+<img src="./Response Comparison.jpg" width="100%"/>
+
 ## To-Do
 
 1. [ ] Add session state/chat history and conversation memory
