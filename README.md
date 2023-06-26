@@ -37,9 +37,9 @@ You can get your own OpenAI API key by following the following instructions:
 
 ## Images
 
-<img src="./GPTeach-by-example-screenshot.jpg" width="100%"/>
+<img src="./GPTeach-by-example-screenshot.png" width="100%"/>
 
-<img src="./Response Comparison.jpg" width="100%"/>
+<img src="./Response Comparison.png" width="100%"/>
 
 ## To-Do
 
